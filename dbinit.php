@@ -13,15 +13,16 @@ $conn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 
 // create the database
 try {
-mysqli_query($conn, "CREATE DATABASE iron_house");
+mysqli_query($conn, "CREATE DATABASE iron_house;");
 // use the created iron_house database
-mysqli_query($conn, "USE iron_house");
+mysqli_query($conn, "USE iron_house;");
 echo "<p>Database created successfully</p>";
 } catch (mysqli_sql_exception $e) {
     die("Error creating database: " . mysqli_error($conn));}
 
 $create_ironsuits_table = "CREATE TABLE ironsuits (
     ironsuit_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ironsuit_color VARCHAR(30) NOT NULL,
     ironsuit_name VARCHAR(30) NOT NULL,
     ironsuit_description TEXT NOT NULL,
     ironsuit_quantity_available INT NOT NULL,
@@ -36,15 +37,15 @@ try {
 } catch (mysqli_sql_exception $e) {
     die("Error creating table: " . mysqli_error($conn));}
 
-// add initial data
-$insert_ironsuits = "INSERT INTO ironsuits (ironsuit_name, ironsuit_description, ironsuit_quantity_available, ironsuit_price) VALUES
-    ('Mark 1', 'The very first iron suit that ever existed, only 1 of a kind, and you can have it. while it might not have all the best tech, it brings back memories.', 1, 1000.00),
-    ('Mark 2', 'The second iron suit, with a lot of improvements, and a lot of new tech. It is a must have for any collector.', 2, 40.00),
-    ('Mark 3', 'This is the ironsuits tech made major breakthroughs, with advanced AI capabilities and supersonic flight speeds accopmanied by an advanced AI, Jarvis.', 30, 69.00),
-    ('Mark 4', 'Now comes the fourth generation with compact form, truly powerful weapon system which can take over alien ships, an truly industrial design', 22, 75.00),
-    ('Mark 5', 'The holy grail of iron suits, the ultimate Mark 5, this is where nano technology comes in, making the suit a part of you', 15, 85.00)
+$insert_ironsuits = "INSERT INTO ironsuits (ironsuit_name, ironsuit_color, ironsuit_description, ironsuit_quantity_available, ironsuit_price) VALUES
+    ('Mark 1', 'Hot Rod Red', 'The very first iron suit that ever existed, only 1 of a kind, and you can have it. while it might not have all the best tech, it brings back memories.', 1, 1000.00),
+    ('Mark 2', 'Dark Red', 'The second iron suit, with a lot of improvements, and a lot of new tech. It is a must have for any collector.', 2, 40.00),
+    ('Mark 3', 'Elegent silver', 'This is the ironsuits tech made major breakthroughs, with advanced AI capabilities and supersonic flight speeds accopmanied by an advanced AI, Jarvis.', 30, 69.00),
+    ('Mark 4', 'Powder Black', 'Now comes the fourth generation with compact form, truly powerful weapon system which can take over alien ships, an truly industrial design', 22, 75.00),
+    ('Mark 5', 'Glowing Red', 'The holy grail of iron suits, the ultimate Mark 5, this is where nano technology comes in, making the suit a part of you', 15, 85.00)
     ";
 
+// add initial data
 try {
     mysqli_query($conn, $insert_ironsuits);
     echo "<p>Initial data inserted successfully</p>";
