@@ -24,7 +24,7 @@ $create_ironsuits_table = "CREATE TABLE ironsuits (
     ironsuit_id INT(6) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ironsuit_color VARCHAR(30) NOT NULL,
     ironsuit_name VARCHAR(30) NOT NULL,
-    ironsuit_description TEXT NOT NULL,
+    ironsuit_description TEXT(500) NOT NULL,
     ironsuit_quantity_available INT NOT NULL,
     ironsuit_price DECIMAL(10, 2) NOT NULL,
     product_added_by VARCHAR(50) DEFAULT 'Suresh Thagunna'
