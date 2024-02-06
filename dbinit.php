@@ -41,8 +41,8 @@ $insert_ironsuits = "INSERT INTO ironsuits (ironsuit_name, ironsuit_color, irons
     ('Mark 1', 'Hot Rod Red', 'The very first iron suit that ever existed, only 1 of a kind, and you can have it. while it might not have all the best tech, it brings back memories.', 1, 1000.00),
     ('Mark 2', 'Dark Red', 'The second iron suit, with a lot of improvements, and a lot of new tech. It is a must have for any collector.', 2, 40.00),
     ('Mark 3', 'Elegent silver', 'This is the ironsuits tech made major breakthroughs, with advanced AI capabilities and supersonic flight speeds accopmanied by an advanced AI, Jarvis.', 30, 69.00),
-    ('Mark 4', 'Powder Black', 'Now comes the fourth generation with compact form, truly powerful weapon system which can take over alien ships, an truly industrial design', 22, 75.00),
-    ('Mark 5', 'Glowing Red', 'The holy grail of iron suits, the ultimate Mark 5, this is where nano technology comes in, making the suit a part of you', 15, 85.00)
+    ('Mark 4', 'Powder Black', 'Now comes the fourth generation with compact form, truly powerful weapon system which can take over alien ships, an truly industrial design.', 22, 75.00),
+    ('Mark 5', 'Glowing Red', 'The holy grail of iron suits, the ultimate Mark 5, this is where nano technology comes in, making the suit a part of you.', 15, 85.00)
     ";
 
 // add initial data

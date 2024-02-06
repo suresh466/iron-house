@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($result) {
             echo "Iron Suit added successfully";
+            header("Location: details.php");
         } else {
             echo "</br>Some error in Saving the data";
         }
