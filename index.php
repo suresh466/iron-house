@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // check if price is a valid number with a maximum of two decimal places
         } else if (!preg_match('/^\d+(\.\d{1,2})?$/', $price)) {
             $errors[] = "Price must be a valid positive number with a maximum of two decimal places";
-        } 
+        }
 
         return $errors;
     }
@@ -122,22 +122,35 @@ else if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iron House</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <form action="index.php" class="form" method="POST" id="ironsuit_add_form">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="ironsuit_name" class="input">
-        <label for="color">Color</label>
-        <input type="text" name="color" id="ironsuit_color" class="input">
-        <label for="description">Description</label>
-        <textarea name="description" id="ironsuit_description" class="input"></textarea>
-        <label for="quantity">Quantity</label>
-        <input type="text" name="quantity" id="ironsuit_quantity" class="input">
-        <label for="price">Price</label>
-        <input type="text" name="price" id="ironsuit_price" class="input">
-        <button type="submit" class="submit">Add Iron Suit</button>
-    </form>
+
+    <nav>
+        <ul class="navigation">
+            <li class='item' id='add'><a href="index.php">Add</a></li>
+            <li class='item' id='view'><a href="details.php">View</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <form action="index.php" class="form" method="POST" id="ironsuit_add_form">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="ironsuit_name" class="input">
+                <label for="color">Color</label>
+                <input type="text" name="color" id="ironsuit_color" class="input">
+                <label for="description">Description</label>
+                <textarea name="description" id="ironsuit_description" class="input" rows=10></textarea>
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" id="ironsuit_quantity" class="input">
+                <label for="price">Price</label>
+                <input type="text" name="price" id="ironsuit_price" class="input">
+                <button type="submit" class="submit" id="ironsuit_submit">Add Iron Suit</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

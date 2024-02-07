@@ -12,8 +12,17 @@ $results = @mysqli_query($conn, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iron House</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <nav>
+        <ul class="navigation">
+            <li class='item' id='add'><a href="index.php">Add</a></li>
+            <li class='item' id='view'><a href="details.php">View</a></li>
+        </ul>
+    </nav>
+
 <!-- display all ironsuits in a table -->
 <table>
     <thead>

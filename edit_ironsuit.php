@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // check if price is a valid number with a maximum of two decimal places
         } else if (!preg_match('/^\d+(\.\d{1,2})?$/', $price)) {
             $errors[] = "Price must be a valid positive number with a maximum of two decimal places";
-        } 
+        }
 
         return $errors;
     }
@@ -149,24 +149,38 @@ else {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iron House</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <form action="edit_ironsuit.php" class="form" method="POST" id="ironsuit_add_form">
-        <!-- id for ironsuit_id is added to keep track of the ironsuit being updated -->
-        <input type="hidden" name="ironsuit_id" value="<?php echo $ironsuit_id ?>">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="ironsuit_name" class="input" value="<?php echo $name ?>">
-        <label for="color">Color</label>
-        <input type="text" name="color" id="ironsuit_color" class="input" value="<?php echo $color ?>">
-        <label for="description">Description</label>
-        <textarea name="description" id="ironsuit_description" class="input" ><?php echo $description ?></textarea>
-        <label for="quantity">Quantity</label>
-        <input type="text" name="quantity" id="ironsuit_quantity" class="input" value="<?php echo $quantity ?>">
-        <label for="price">Price</label>
-        <input type="text" name="price" id="ironsuit_price" class="input" value="<?php echo $price ?>">
-        <button type="submit" class="submit">Update Iron Suit</button>
-    </form>
+
+    <nav>
+        <ul class="navigation">
+            <li class='item' id='add'><a href="index.php">Add</a></li>
+            <li class='item' id='view'><a href="details.php">View</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <form action="edit_ironsuit.php" class="form" method="POST" id="ironsuit_add_form">
+                <!-- id for ironsuit_id is added to keep track of the ironsuit being updated -->
+                <input type="hidden" name="ironsuit_id" value="<?php echo $ironsuit_id ?>">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="ironsuit_name" class="input" value="<?php echo $name ?>">
+                <label for="color">Color</label>
+                <input type="text" name="color" id="ironsuit_color" class="input" value="<?php echo $color ?>">
+                <label for="description">Description</label>
+                <textarea name="description" id="ironsuit_description" class="input"
+                    rows=10><?php echo $description ?></textarea>
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" id="ironsuit_quantity" class="input" value="<?php echo $quantity ?>">
+                <label for="price">Price</label>
+                <input type="text" name="price" id="ironsuit_price" class="input" value="<?php echo $price ?>">
+                <button type="submit" class="submit" id="ironsuit_submit">Update Iron Suit</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
