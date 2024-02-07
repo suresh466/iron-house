@@ -82,6 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $quantity_clean = filter_var(trim($_POST['quantity']), FILTER_SANITIZE_NUMBER_INT);
         // sanitize decimal, apply flags to preserve decimal points
         $price_clean = filter_var(trim($_POST['price']), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $ironsuit_id_clean = filter_var(trim($_POST['ironsuit_id']), FILTER_SANITIZE_NUMBER_INT);
+        var_dump($ironsuit_id_clean);
 
         $query = "UPDATE ironsuits SET ironsuit_name = ?, ironsuit_color = ?, ironsuit_description = ?, ironsuit_quantity_available = ?, ironsuit_price = ? WHERE  ironsuit_id = ?;";
 
@@ -89,12 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         mysqli_stmt_bind_param(
             $stmt,
-            'sssid',
+            'sssidi',
             $name_clean,
             $color_clean,
             $description_clean,
             $quantity_clean,
-            $price_clean
+            $price_clean,
+            $ironsuit_id_clean,
         );
 
         $result = mysqli_stmt_execute($stmt);
@@ -150,6 +153,8 @@ else {
 
 <body>
     <form action="edit_ironsuit.php" class="form" method="POST" id="ironsuit_add_form">
+        <!-- id for ironsuit_id is added to keep track of the ironsuit being updated -->
+        <input type="hidden" name="ironsuit_id" value="<?php echo $ironsuit_id ?>">
         <label for="name">Name</label>
         <input type="text" name="name" id="ironsuit_name" class="input" value="<?php echo $name ?>">
         <label for="color">Color</label>
