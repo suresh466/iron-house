@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 // if the request method is not post, then it must be get, other requests are not allowed
-else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+else if ($_SERVER['REQUEST_METHOD'] != 'GET') {
     echo "The script only works with get and post requests.";
 }
 
