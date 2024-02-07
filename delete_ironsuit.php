@@ -11,18 +11,13 @@
 
     <?php
     require('db_conn.php');
-
     $ironsuit_id = null;
-
-    if (!empty($_GET['ironsuit_id'])) {
-        $ironsuit_id = $_GET['ironsuit_id'];
-    } else {
-        // if no id provided message and exit
+    // if no id provided message and exit
+    if (empty($_GET['ironsuit_id'])) {
         echo "<p> Error! Ironsuit Id not found!</p>";
         exit;
-    }
-
-    if ($ironsuit_id) {
+    } else {
+        $ironsuit_id = $_GET['ironsuit_id'];
         $query = "DELETE FROM ironsuits WHERE ironsuit_id = ?;";
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, 'i', $ironsuit_id);

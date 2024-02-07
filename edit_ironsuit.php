@@ -1,7 +1,6 @@
 <?php
-
 require('db_conn.php');
-// handle Post request here, Get request handled by default, and disallow other request in the else block
+// handle post request
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function validate_form($form_data)
     {
@@ -84,8 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // sanitize decimal, apply flags to preserve decimal points
         $price_clean = filter_var(trim($_POST['price']), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-        $query = "INSERT INTO ironsuits (ironsuit_name, ironsuit_color, ironsuit_description, ironsuit_quantity_available, ironsuit_price)
-    VALUES (?,?,?,?,?)";
+        $query = "UPDATE ironsuits SET ironsuit_name = ?, ironsuit_color = ?, ironsuit_description = ?, ironsuit_quantity_available = ?, ironsuit_price = ? WHERE  ironsuit_id = ?;";
 
         $stmt = mysqli_prepare($conn, $query);
 
@@ -104,12 +102,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result) {
             header("Location: details.php");
         } else {
-            echo "</br>Some error in Saving the data";
+            echo "</br>Some error in updating the data";
         }
     }
 }
-// if the request method is not post, then it must be get, other requests are not allowed
+// for get request
 else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $ironsuit_id = null;
+    // if no ironsuit id provided message and exit
+    if (empty($_GET['ironsuit_id'])) {
+        echo "<p>Error! Ironsuit Id not found.</p>";
+        exit;
+    } else {
+        $ironsuit_id = $_GET['ironsuit_id'];
+        $query = "SELECT * FROM ironsuits WHERE ironsuit_id = $ironsuit_id;";
+        $result = @mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $name = $row['ironsuit_name'];
+            $color = $row['ironsuit_color'];
+            $description = $row['ironsuit_description'];
+            $quantity = $row['ironsuit_quantity_available'];
+            $price = $row['ironsuit_price'];
+        } else {
+            echo "<p>Error! cannot the particular iron suit from the database</p>";
+            exit;
+        }
+    }
+}
+// do nothing for any other request
+else {
     echo "The script only works with get and post requests.";
 }
 
@@ -125,18 +149,18 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </head>
 
 <body>
-    <form action="index.php" class="form" method="POST" id="ironsuit_add_form">
+    <form action="edit_ironsuit.php" class="form" method="POST" id="ironsuit_add_form">
         <label for="name">Name</label>
-        <input type="text" name="name" id="ironsuit_name" class="input">
+        <input type="text" name="name" id="ironsuit_name" class="input" value="<?php echo $name ?>">
         <label for="color">Color</label>
-        <input type="text" name="color" id="ironsuit_color" class="input">
+        <input type="text" name="color" id="ironsuit_color" class="input" value="<?php echo $color ?>">
         <label for="description">Description</label>
-        <textarea name="description" id="ironsuit_description" class="input"></textarea>
+        <textarea name="description" id="ironsuit_description" class="input" ><?php echo $description ?></textarea>
         <label for="quantity">Quantity</label>
-        <input type="text" name="quantity" id="ironsuit_quantity" class="input">
+        <input type="text" name="quantity" id="ironsuit_quantity" class="input" value="<?php echo $quantity ?>">
         <label for="price">Price</label>
-        <input type="text" name="price" id="ironsuit_price" class="input">
-        <button type="submit" class="submit">Add Iron Suit</button>
+        <input type="text" name="price" id="ironsuit_price" class="input" value="<?php echo $price ?>">
+        <button type="submit" class="submit">Update Iron Suit</button>
     </form>
 </body>
 
