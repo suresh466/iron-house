@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result) {
             header("Location: details.php");
         } else {
-            echo "</br>Some error in Saving the data";
+            echo "<p class='error'>Some error in Saving the data</p>";
         }
     }
 }

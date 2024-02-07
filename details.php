@@ -55,7 +55,7 @@ $results = @mysqli_query($conn, $query);
             $str_to_print .= "<td>{$row['ironsuit_description']}</td>";
             $str_to_print .= "<td>{$row['ironsuit_quantity_available']}</td>";
             $str_to_print .= "<td>{$row['ironsuit_price']}</td>";
-            $str_to_print .= "<td> <a href='edit_ironsuit.php?ironsuit_id={$row['ironsuit_id']}'>Edit</a> | <a href='delete_ironsuit.php?ironsuit_id={$row['ironsuit_id']}'>Delete</a> </td> </tr>";
+            $str_to_print .= "<td> <a class='action_button' id='edit' href='edit_ironsuit.php?ironsuit_id={$row['ironsuit_id']}'>Edit</a> <a class='action_button' id='delete' href='delete_ironsuit.php?ironsuit_id={$row['ironsuit_id']}'>Delete</a> </td> </tr>";
             
             echo $str_to_print;
         }

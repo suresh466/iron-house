@@ -14,7 +14,7 @@
     $ironsuit_id = null;
     // if no id provided message and exit
     if (empty($_GET['ironsuit_id'])) {
-        echo "<p> Error! Ironsuit Id not found!</p>";
+        echo "<p class='error'> Error! Ironsuit Id not found!</p>";
         exit;
     } else {
         $ironsuit_id = $_GET['ironsuit_id'];
@@ -26,13 +26,12 @@
         if($result) {
             $affected_rows = mysqli_stmt_affected_rows($stmt);
             if($affected_rows == 1) {
-                echo "<p> Ironsuit deleted successfully!</p>";
                 header("Location: details.php");
             } else {
-                echo "<p> Error! Ironsuit with id: {$ironsuit_id} not found!</p>";
+                echo "<p class='error'> Error! Ironsuit with id: {$ironsuit_id} not found!</p>";
             }
         } else {
-            echo "<p> Error! Ironsuit not deleted!</p>" . mysqli_error($conn);
+            echo "<p class='error'> Error! Ironsuit not deleted!</p>" . mysqli_error($conn);
         }
     }
     ?>

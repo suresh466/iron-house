@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result) {
             header("Location: details.php");
         } else {
-            echo "</br>Some error in updating the data";
+            echo "<p class='error'>Some error in updating the data.</p>";
         }
     }
 }
@@ -115,7 +115,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $ironsuit_id = null;
     // if no ironsuit id provided message and exit
     if (empty($_GET['ironsuit_id'])) {
-        echo "<p>Error! Ironsuit Id not found.</p>";
+        echo "<p class='error'>Error! Ironsuit Id not found.</p>";
         exit;
     } else {
         $ironsuit_id = $_GET['ironsuit_id'];
@@ -130,7 +130,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $quantity = $row['ironsuit_quantity_available'];
             $price = $row['ironsuit_price'];
         } else {
-            echo "<p>Error! cannot the particular iron suit from the database</p>";
+            echo "<p class='error'>Error! cannot the particular iron suit from the database</p>";
             exit;
         }
     }
