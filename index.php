@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        // quantity must be an integer
         if (empty($quantity)) {
             $errors[] = "Quantity is required";
         } else {
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // validate the form
     $errors = validate_form($_POST);
 
+    // if there are errors, display them
     if (!empty($errors)) {
         foreach ($errors as $error) {
             echo "<p class='error'>$error</p>";
@@ -85,12 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $price_clean = filter_var(trim($_POST['price']), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
         $query = "INSERT INTO ironsuits (ironsuit_name, ironsuit_color, ironsuit_description, ironsuit_quantity_available, ironsuit_price)
-    VALUES (?,?,?,?,?)";
+        VALUES (?,?,?,?,?)";
 
+        // prepare the query and bind the parameters, to protect from injection attacks
         $stmt = mysqli_prepare($conn, $query);
 
         mysqli_stmt_bind_param(
             $stmt,
+            // types of the parameters
             'sssid',
             $name_clean,
             $color_clean,
@@ -101,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $result = mysqli_stmt_execute($stmt);
 
+        // if success redirect to detail page
         if ($result) {
             header("Location: details.php");
         } else {

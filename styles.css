@@ -5,7 +5,9 @@ body {
   background-color: #f4f4f4;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #333;
 }
 
@@ -21,73 +23,73 @@ a {
 }
 
 .navigation {
-    display: flex;
-    flex-flow: row wrap;
-    background-color: lightblue;
-    justify-content: center;
-    margin: 0;
-    margin-bottom: 1em;
-    padding: 1em;
-  }
-  
-.navigation .item {
-    list-style-type: none;
-    font-weight: 500;
-    font-size: 1.2em;
-  }
-  
-  .item a {
-    display: block;
-    padding: 1em 1em;
-    text-decoration: none;
-  }
-  
-  .item a:hover {
-    background-color: lightgreen;
-  }
-  
-  .form-container {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  flex-flow: row wrap;
+  background-color: lightblue;
+  justify-content: center;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 1em;
+}
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.navigation .item {
+  list-style-type: none;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.item a {
+  display: block;
+  padding: 1em 1em;
+  text-decoration: none;
+}
+
+.item a:hover {
+  background-color: lightgreen;
+}
+
+.form-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form input,
 .form textarea,
 .form select {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    margin: 10px 0;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin: 10px 0;
 }
 
 .form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: lightblue;
-    color: #333;
-    padding: 1em;
-    cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: lightblue;
+  color: #333;
+  padding: 1em;
+  cursor: pointer;
 }
 
 .form button:hover {
-    background-color: lightgreen;
+  background-color: lightgreen;
 }
 
 table {
@@ -96,11 +98,14 @@ table {
   margin: 20px 0;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ddd;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 20px;
 }

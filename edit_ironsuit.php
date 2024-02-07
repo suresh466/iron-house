@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        // only string is allowed for color
         if (empty($color)) {
             $errors[] = "Color is required";
         } else {
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        // must be an integer 10.1 is not allowed for instance
         if (empty($quantity)) {
             $errors[] = "Quantity is required";
         } else {
@@ -67,13 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // validate the form
     $errors = validate_form($_POST);
 
+    // if there are any errors display them
     if (!empty($errors)) {
         foreach ($errors as $error) {
             echo "<p class='error'>$error</p>";
         }
+        // if no errors then update the ironsuit
     } else {
-
-
         // sanitize string
         $name_clean = prepare_string($conn, $_POST['name']);
         $color_clean = prepare_string($conn, $_POST['color']);
@@ -87,10 +89,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $query = "UPDATE ironsuits SET ironsuit_name = ?, ironsuit_color = ?, ironsuit_description = ?, ironsuit_quantity_available = ?, ironsuit_price = ? WHERE  ironsuit_id = ?;";
 
+        // prepare the query and bind the parameters to protect from injection attacks
         $stmt = mysqli_prepare($conn, $query);
 
         mysqli_stmt_bind_param(
             $stmt,
+            // types of the parameters
             'sssidi',
             $name_clean,
             $color_clean,
@@ -102,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $result = mysqli_stmt_execute($stmt);
 
+        // if update is successful redirect to details.php
         if ($result) {
             header("Location: details.php");
         } else {
@@ -118,10 +123,12 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo "<p class='error'>Error! Ironsuit Id not found.</p>";
         exit;
     } else {
+        // get the ironsuit id from the get request
         $ironsuit_id = $_GET['ironsuit_id'];
         $query = "SELECT * FROM ironsuits WHERE ironsuit_id = $ironsuit_id;";
         $result = @mysqli_query($conn, $query);
 
+        // get the ironsuit from the database and display it in the form
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
             $name = $row['ironsuit_name'];
